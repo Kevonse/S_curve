@@ -8,12 +8,21 @@ public:
 
 	float interpolate(float position, float time);
 	float get_current_pos();
+	float get_v(float time);
+	float get_p_acc(float time);
+	float get_p_lin(float pos, float time);
+	float get_p_decc(float target, float time);
+	float get_t_total();
 
 private:
-	float curr_pos;
-	float curr_v;
-	float p_v_max; //Time it took to reach v_max
 	const float v_max; //Max velocity
 	const float a_max; //Max acceleration
+	float time_passed;
+	float curr_pos;
+	float curr_v;
+	float p_acc;
+	float t_acc; //Time in acceleration
+	float t_lin; //Time in linear mode 
+	float p_lin;
 };
 
