@@ -7,10 +7,9 @@ public:
 	~S_curve_controller();
 
 	float interpolate(float position, float time);
-	float get_current_pos();
-	float get_v(float time);
+	float done();
 	float get_p_acc(float time);
-	float get_p_lin(float pos, float time);
+	float get_p_lin(float time);
 	float get_p_decc(float target, float time);
 	float get_t_total();
 
@@ -24,5 +23,6 @@ private:
 	float t_acc; //Time in acceleration
 	float t_lin; //Time in linear mode 
 	float p_lin;
+	bool is_done;
 };
 
