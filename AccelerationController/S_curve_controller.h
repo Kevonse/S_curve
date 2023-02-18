@@ -18,7 +18,6 @@ private:
 	const float a_max; //Max acceleration
 	float time_passed;
 	float curr_pos;
-	float curr_v;
 	float p_acc;
 	float t_acc; //Time in acceleration
 	float t_lin; //Time in linear mode 

@@ -5,7 +5,6 @@ S_curve_controller::S_curve_controller(const float v_max, const float a_max) : v
                                                                               ,a_max(a_max)
 																			  ,time_passed(0)
 																			  ,curr_pos(0)
-																			  ,curr_v(0)
 																			  ,p_acc(0)
 																			  ,t_acc(v_max/a_max)
 																			  ,t_lin(0)
@@ -36,13 +35,16 @@ float S_curve_controller::interpolate(float position, float time)
 	{
 		std::cout << "Decelerating phase!" << std::endl;
 		curr_pos = get_p_decc(position, time_passed);
+
+		float next_pos = get_p_decc(position, time_passed + time); //Look ahead to determine if max has been reached.
+		if (next_pos < curr_pos)
+		{
+			std::cout << "Next_coord: " << next_pos << std::endl;
+			is_done = true;
+		}
 	}
+
 	time_passed += time;
-	if (prev_pos > curr_pos || curr_pos == position)
-	{
-		is_done = true;
-		return position;
-	}
 	return curr_pos;
 	
 }
