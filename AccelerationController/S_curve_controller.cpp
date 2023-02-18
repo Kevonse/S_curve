@@ -37,7 +37,7 @@ float S_curve_controller::interpolate(float position, float time)
 		curr_pos = get_p_decc(position, time_passed);
 
 		float next_pos = get_p_decc(position, time_passed + time); //Look ahead to determine if max has been reached.
-		if (next_pos < curr_pos)
+		if (next_pos < curr_pos || curr_pos == position)
 		{
 			std::cout << "Next_coord: " << next_pos << std::endl;
 			is_done = true;
@@ -46,7 +46,6 @@ float S_curve_controller::interpolate(float position, float time)
 
 	time_passed += time;
 	return curr_pos;
-	
 }
 
 float S_curve_controller::done()
